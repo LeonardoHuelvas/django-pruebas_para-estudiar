@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión - Mentes Creativas</title>
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #4FD1C5, #81E6D9);
+        }
+        
+        .login-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            /* Limita el ancho máximo */
+            margin: auto;
+            /* Centra horizontalmente */
+        }
+        
+        .form-control {
+            border-radius: 50px;
+            padding-left: 40px;
+        }
+        
+        .form-icon {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #4FD1C5;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .btn-info {
+            border-radius: 50px;
+        }
+        
+        .logo-img {
+            max-height: 80px;
+        }
+    </style>
+
+</head>
+
+<body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="col-lg-5">
+        <div class="card login-card">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <img src="{% static 'img/mentes.png' %}" alt="Logo" class="logo-img">
+                    <h4 class="text-gray-800 mt-3">¡Bienvenido a Quiz Soft!</h4>
+                </div>
+
+                <form method="post" action="{% url 'core:login' %}">
+                    {% csrf_token %} {% if form.errors %}
+                    <div class="alert alert-danger text-center">
+                        Usuario o contraseña incorrectos.
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                        <i class="fas fa-user form-icon"></i>
+                        <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required>
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fas fa-lock form-icon"></i>
+                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-info btn-block">Iniciar Sesión</button>
+                </form>
+
+                <hr>
+                <div class="text-center">
+                    <a class="small" href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div class="text-center">
+                    <a class="small" href="#">¡Crear una cuenta!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

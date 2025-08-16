@@ -1,0 +1,58 @@
+{% extends "index.html" %} {% load static %} {% block content %}
+<div class="container">
+    <h4 class="mb-4 text-primary">Mi Perfil</h4>
+
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mb-3">{{ message }}</div>
+    {% endfor %} {% endif %}
+
+    <div class="row">
+        <!-- Columna: foto y datos -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <img class="img-thumbnail mb-3 rounded-circle" style="width:150px;height:150px;object-fit:cover;" src="{% if perfil and perfil.foto %}{{ perfil.foto.url }}{% else %}{% static 'img/default-user.png' %}{% endif %}" alt="Foto de perfil" />
+                    <h5 class="card-title">
+                        {{ request.user.get_full_name|default:request.user.username }}
+                    </h5>
+                    <p class="text-muted mb-0">
+                        Rol: {% if perfil %} {{ perfil.get_rol_display }} {% else %} - {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna: formulario -->
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %} {% if form.non_field_errors %}
+                        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                        {% endif %}
+
+                        <div class="form-group">
+                            <label for="{{ form.username.id_for_label }}">Usuario</label> {{ form.username }}
+                            <div class="invalid-feedback d-block">{{ form.username.errors }}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Correo</label> {{ form.email }}
+                            <div class="invalid-feedback d-block">{{ form.email.errors }}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.foto.id_for_label }}">Foto de perfil</label> {{ form.foto }}
+                            <div class="invalid-feedback d-block">{{ form.foto.errors }}</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Actualizar Perfil
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

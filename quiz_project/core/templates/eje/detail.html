@@ -1,0 +1,26 @@
+{% extends "index.html" %} {% load static %} {% block content %}
+<div class="container mt-4">
+    <h3 class="text-info">Detalle del Eje Temático</h3>
+
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Nombre:</th>
+            <td>{{ object.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Quiz asociado:</th>
+            <td>{{ object.quiz.nombre }}</td>
+        </tr>
+    </table>
+
+    <a href="{% url 'core:eje_update' object.id %}" class="btn btn-warning">
+        <i class="fas fa-edit"></i> Editar
+    </a>
+    <a href="{% url 'core:eje_delete' object.id %}" class="btn btn-danger">
+        <i class="fas fa-trash"></i> Eliminar
+    </a>
+    <a href="{% url 'core:eje_list' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
+</div>
+{% endblock %}

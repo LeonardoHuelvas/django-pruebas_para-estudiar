@@ -1,0 +1,12 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-4">
+    <h3 class="text-danger">¿Eliminar esta pregunta?</h3>
+    <p>{{ object.enunciado }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'core:pregunta_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

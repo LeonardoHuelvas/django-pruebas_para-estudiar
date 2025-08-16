@@ -1,0 +1,19 @@
+{% extends "index.html" %} {% block content %}
+
+<h1 class="mb-4">Selecciona un eje temático</h1>
+
+<form>
+    <div class="form-group">
+        <label for="eje">Eje temático</label>
+        <select class="form-control" id="eje" name="eje" onchange="if(this.value) window.location.href=this.value;">
+            <option value="">-- Selecciona un eje --</option>
+            {% for eje in ejes %}
+            <option value="{% url 'core:presentar_quiz' eje.id %}">
+                {{ eje.nombre }} ({{ eje.quiz.nombre }})
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+</form>
+
+{% endblock %}

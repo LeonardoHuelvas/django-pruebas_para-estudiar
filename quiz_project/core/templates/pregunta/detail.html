@@ -1,0 +1,8 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-4">
+    <h3 class="text-primary">Detalle de Pregunta</h3>
+    <p><strong>Enunciado:</strong> {{ object.enunciado }}</p>
+    <p><strong>Eje Temático:</strong> {{ object.eje.nombre }}</p>
+    <p><strong>Respuesta Correcta:</strong> {{ object.respuesta_correcta }}</p>
+</div>
+{% endblock %}

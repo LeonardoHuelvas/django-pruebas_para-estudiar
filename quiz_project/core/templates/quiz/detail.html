@@ -1,0 +1,17 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-4">
+    <h3 class="text-primary">{{ object.nombre }}</h3>
+    <p><strong>Descripción:</strong> {{ object.descripcion|default:"—" }}</p>
+    <hr>
+    <h5 class="text-secondary">Ejes Temáticos:</h5>
+    <ul>
+        {% for eje in object.ejes.all %}
+        <li>
+            <a href="{% url 'core:eje_detail' eje.id %}">{{ eje.nombre }}</a>
+        </li>
+        {% empty %}
+        <li>Sin ejes temáticos.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

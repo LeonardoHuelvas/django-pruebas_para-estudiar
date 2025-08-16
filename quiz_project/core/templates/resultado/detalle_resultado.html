@@ -1,0 +1,29 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+<div class="container mt-4">
+    <h2 class="text-primary">Resultado del Simulacro: {{ resultado.eje.nombre }}</h2>
+    <p>Puntaje obtenido: <strong>{{ resultado.puntaje|floatformat:2 }}%</strong></p>
+    <hr> {% for item in detalle %}
+    <div class="card mb-3 border {% if item.es_correcta %}border-success{% else %}border-danger{% endif %}">
+        <div class="card-header font-weight-bold">
+            {{ forloop.counter }}. {{ item.pregunta.texto }}
+        </div>
+        <div class="card-body">
+            {% for opcion in item.opciones %}
+            <div class="form-check">
+                <input type="radio" class="form-check-input" disabled {% if opcion.id == item.opcion_seleccionada.id %}checked{% endif %}>
+                <label class="form-check-label
+                    {% if opcion.es_correcta %}text-success font-weight-bold{% endif %}
+                    {% if opcion.id == item.opcion_seleccionada.id and not opcion.es_correcta %}text-danger{% endif %}">
+                    {{ opcion.texto }}
+                </label>
+            </div>
+            {% endfor %} {% if item.es_correcta %}
+            <span class="badge badge-success mt-2">✅ Correcta</span> {% else %}
+            <span class="badge badge-danger mt-2">❌ Incorrecta</span> {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <a href="{% url 'core:quiz_list' %}" class="btn btn-secondary mt-3">Volver a simulacros</a>
+</div>
+{% endblock %}

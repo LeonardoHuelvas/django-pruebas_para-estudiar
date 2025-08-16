@@ -1,0 +1,14 @@
+# Framework base
+Django>=4.2,<5.0
+
+# APIs REST
+djangorestframework>=3.14
+
+# Soporte para CORS si usas frontend separado en el futuro
+django-cors-headers>=4.0
+
+# Para manejar variables de entorno fácilmente
+python-decouple>=3.8
+
+# Para formatos de fecha y utilidad adicional
+pytz

@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sesión cerrada</title>
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card shadow mx-auto" style="max-width: 500px;">
+            <div class="card-body text-center">
+                <h2 class="text-success"><i class="fas fa-check-circle"></i></h2>
+                <h4 class="text-gray-800">¡Sesión cerrada correctamente!</h4>
+                <p class="mb-4">Gracias por usar Mentes Creativas.</p>
+                <a href="{% url 'login' %}" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

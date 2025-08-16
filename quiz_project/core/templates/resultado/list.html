@@ -1,0 +1,34 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-4">
+    <h3 class="text-primary">Resultados</h3>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Quiz</th>
+                <th>Puntaje</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in object_list %}
+            <tr>
+                <td>{{ resultado.usuario.username }}</td>
+                <td>{{ resultado.quiz.nombre }}</td>
+                <td>{{ resultado.puntaje }}</td>
+                <td>{{ resultado.fecha }}</td>
+                <td>
+                    <a href="{% url 'core:detalle_resultado' resultado.id %}" class="btn btn-info btn-sm">Ver Detalle</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay resultados disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-5 text-center">
+    <h2 class="text-success">¡Simulacro Finalizado!</h2>
+    <p class="lead">Eje temático: <strong>{{ resultado.eje.resultado }}</strong></p>
+    <p class="display-4">Puntaje: <strong>{{ resultado.puntaje|floatformat:2 }}</strong> / 100</p>
+
+    <div class="mt-4">
+        <a href="{% url 'core:seleccionar_eje' %}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Volver a simulacros
+        </a>
+
+        {% if resultado.id %}
+        <a href="{% url 'core:resultado_detail' resultado.id %}" class="btn btn-info">
+            <i class="fas fa-chart-line"></i> Ver detalle del resultado
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

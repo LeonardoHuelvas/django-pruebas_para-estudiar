@@ -1,0 +1,23 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-4">
+    <h3 class="text-primary"><i class="fas fa-clipboard-list"></i> Seleccionar Simulacro</h3>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="eje_id">Eje Temático</label>
+            <select name="eje_id" class="form-control" required>
+                {% for eje in ejes %}
+                <option value="{{ eje.id }}">{{ eje.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="cantidad">Cantidad de preguntas</label>
+            <input type="number" name="cantidad" class="form-control" min="1" max="200" placeholder="Ej: 100" required>
+        </div>
+
+        <button class="btn btn-success mt-3"><i class="fas fa-play-circle"></i> Iniciar</button>
+    </form>
+</div>
+{% endblock %}

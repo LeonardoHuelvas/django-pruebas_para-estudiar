@@ -1,0 +1,9 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-4">
+    <h3 class="text-primary">Detalle del Resultado</h3>
+    <p><strong>Usuario:</strong> {{ object.usuario.username }}</p>
+    <p><strong>Quiz:</strong> {{ object.quiz.nombre }}</p>
+    <p><strong>Puntaje:</strong> {{ object.puntaje }}</p>
+    <p><strong>Fecha:</strong> {{ object.fecha }}</p>
+</div>
+{% endblock %}

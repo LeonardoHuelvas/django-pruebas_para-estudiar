@@ -1,0 +1,73 @@
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'core:dashboard' %}">
+        <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-puzzle-piece"></i></div>
+        <div class="sidebar-brand-text mx-3">Quiz</div>
+    </a>
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'core:dashboard' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+
+    {% if request.user.is_superuser %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'core:gestionar_roles' %}">
+            <i class="fas fa-users-cog"></i> Gestión de Roles
+        </a>
+    </li>
+    {% endif %}
+
+
+    <!-- Quices -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'core:quiz_list' %}">
+
+            <i class="fas fa-question-circle"></i>
+            <span>Quices</span>
+        </a>
+    </li>
+
+    <!-- Ejes -->
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'core:eje_list' %}">
+            <i class="fas fa-layer-group"></i>
+            <span>Ejes</span>
+        </a>
+    </li>
+
+
+    <!-- Preguntas -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'core:pregunta_list' %}">
+            <i class="fas fa-list"></i>
+            <span>Preguntas</span>
+        </a>
+    </li>
+
+    <!-- Opciones -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'core:opcion_create' %}">
+            <i class="fas fa-plus-circle"></i>
+            <span>Crear Opción</span>
+        </a>
+    </li>
+
+    <!-- Resultados -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'core:resultado_list' %}">
+            <i class="fas fa-chart-bar"></i>
+            <span>Resultados</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>

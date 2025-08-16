@@ -1,0 +1,36 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+<div class="container mt-4">
+    <h3>Importar preguntas masivamente</h3>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="eje_id">Selecciona Eje Temático:</label>
+            <select class="form-control" name="eje_id" required>
+                {% for eje in ejes %}
+                <option value="{{ eje.id }}">{{ eje.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="archivo_json">Selecciona archivo JSON:</label>
+            <input type="file" name="archivo_json" accept=".json" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">📥 Importar Preguntas</button>
+        <a href="{% url 'core:importar_preguntas' %}" class="btn btn-secondary mt-3">Cancelar</a>
+
+    </form>
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

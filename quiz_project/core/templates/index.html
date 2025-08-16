@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Quiz Preparate{% endblock %}</title>
+
+    <!-- Estilos base -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet">
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+
+    <style>
+        body {
+            background-color: #F7FAFC;
+        }
+        
+        .sidebar {
+            background-color: #5b55c0dd !important;
+        }
+        
+        .sidebar .nav-link,
+        .sidebar .nav-link i {
+            color: #fff !important;
+        }
+        
+        .sidebar .nav-link:hover,
+        .sidebar .nav-item.active>.nav-link {
+            background-color: #FBBF24 !important;
+            color: #000 !important;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        {% include 'partials/sidebar.html' %}
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                {% include 'partials/topbar.html' %}
+                <div class="container-fluid">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <!-- templates/base.html (incluye mensajes flash) -->
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% endif %}
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto text-center">
+                    <span>Copyright &copy; LeJHuBo {{ now|date:"Y" }}</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
